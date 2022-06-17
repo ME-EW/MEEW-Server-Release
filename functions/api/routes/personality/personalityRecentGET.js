@@ -55,7 +55,7 @@ module.exports = async (req, res) => {
       const createdAt = history.createdAt;
 
       const historyObj = {
-        date: `${createdAt.getFullYear()}.${createdAt.getMonth() + 1}.${createdAt.getDate()}`,
+        date: createdAt,
         name: character.name.trim(),
         percent: level * 25,
         imgUrl,
