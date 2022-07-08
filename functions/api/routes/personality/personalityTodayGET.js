@@ -59,6 +59,7 @@ module.exports = async (req, res) => {
 
     const data = {
       nickname: user.nickname,
+      enum: character.id,
       name: character.name,
       level: completeTaskIds.length,
       imageUrl,
