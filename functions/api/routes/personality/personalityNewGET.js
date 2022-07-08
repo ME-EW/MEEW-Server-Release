@@ -62,6 +62,7 @@ module.exports = async (req, res) => {
 
     const data = {
       nickname: updatedUser.nickname,
+      enum: personality.id,
       name: personality.name,
       level: 0,
       imageUrl,
