@@ -1,4 +1,7 @@
 module.exports = {
+  // 공통
+  NULL_VALUE: '필요한 값이 없습니다.',
+
   // 캐릭터 조회
   GET_TODAY_SUCCESS: '오늘의 캐릭터 불러오기 완료',
   LACK_OF_CHANCE: '새로고침 잔여 기회가 없습니다',
