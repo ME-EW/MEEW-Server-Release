@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
         completeTaskIds = history.completeTask.split(',');
       }
       const level = completeTaskIds.length;
-      const character = await personalityDB.getCharacterByPersonalityId(client, history.personalityId);
+      const character = await personalityDB.getPersonalityById(client, history.personalityId);
       const personalityImage = await personalityDB.getImageByLevelAndId(client, level, history.personalityId);
       const imgUrl = personalityImage.url;
 

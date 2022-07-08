@@ -30,11 +30,11 @@ module.exports = async (req, res) => {
       return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.GET_RECENT_SUCCESS, { today: {}, recent: [] }));
     }
 
-    const character = await personalityDB.getCharacterByPersonalityId(client, recentHistory.personalityId);
+    const personality = await personalityDB.getPersonalityById(client, recentHistory.personalityId);
 
     const today = {
-      name: character.name.trim(),
-      desc: character.description.trim(),
+      name: personality.name.trim(),
+      desc: personality.description.trim(),
     };
 
     let recent = [];

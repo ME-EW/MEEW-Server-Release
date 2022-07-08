@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
       return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.HISTORY_NOT_EXIST));
     }
 
-    const character = await personalityDB.getCharacterByPersonalityId(client, recentHistory.personalityId);
+    const personality = await personalityDB.getPersonalityById(client, recentHistory.personalityId);
 
     const allTaskIds = recentHistory.allTask.split(',');
 
@@ -59,8 +59,8 @@ module.exports = async (req, res) => {
 
     const data = {
       nickname: user.nickname,
-      enum: character.id,
-      name: character.name,
+      enum: personality.id,
+      name: personality.name,
       level: completeTaskIds.length,
       imageUrl,
       chance: user.chance,
