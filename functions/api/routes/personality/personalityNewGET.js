@@ -47,7 +47,7 @@ module.exports = async (req, res) => {
 
     const updatedUser = await userDB.updateChanceByUserId(client, userId, user.chance - 1);
     const recentHistory = await personalityDB.updateRecentHistory(client, userId, newPersonalityId, newTasks.map((t) => t.id).join());
-    const personality = await personalityDB.getCharacterByPersonalityId(client, recentHistory.personalityId);
+    const personality = await personalityDB.getPersonalityById(client, recentHistory.personalityId);
     const personalityImage = await personalityDB.getImageByLevelAndId(client, 0, recentHistory.personalityId);
     const imageUrl = personalityImage.url;
 

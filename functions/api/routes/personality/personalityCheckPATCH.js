@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
     const userId = user.id;
 
     const recentHistory = await personalityDB.getRecentHistoryById(client, userId);
-    const personality = await personalityDB.getCharacterByPersonalityId(client, recentHistory.personalityId);
+    const personality = await personalityDB.getPersonalityById(client, recentHistory.personalityId);
 
     const allTaskIds = recentHistory.allTask.split(',').map((t) => +t);
     let completeTaskIds = [];
@@ -68,6 +68,7 @@ module.exports = async (req, res) => {
 
     const data = {
       nickname: user.nickname,
+      enum: personality.id,
       name: personality.name,
       level: completeTaskIds.length,
       imageUrl,
