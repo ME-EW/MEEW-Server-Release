@@ -25,7 +25,7 @@ const getTaskByTaskId = async (client, taskId) => {
   return convertSnakeToCamel.keysToCamel(rows[0]);
 };
 
-const getCharacterByPersonalityId = async (client, personalityId) => {
+const getPersonalityById = async (client, personalityId) => {
   const { rows } = await client.query(
     `
       SELECT * FROM public.personality
@@ -161,7 +161,7 @@ const getAllHistoryById = async (client, userId) => {
 module.exports = {
   getRecentHistoryById,
   getTaskByTaskId,
-  getCharacterByPersonalityId,
+  getPersonalityById,
   getTasksByPersonalityId,
   updateRecentHistory,
   updateTODO,
