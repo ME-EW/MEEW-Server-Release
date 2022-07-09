@@ -49,9 +49,9 @@ module.exports = async (req, res) => {
         content = content.trim();
 
         if (completeTaskIds.includes(tId)) {
-          done.push({ taskId: tId, content });
+          done.push({ taskId: parseInt(tId), content });
         } else {
-          fail.push({ taskId: tId, content });
+          fail.push({ taskId: parseInt(tId), content });
         }
       }
 
