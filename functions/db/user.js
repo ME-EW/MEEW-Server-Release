@@ -7,10 +7,10 @@ const getUserBySocialTypeAndSocialId = async (client, socialType, socialId) => {
     SELECT id FROM public.user
     WHERE social_type = $1 AND social_id = $2
     `,
-    [socialType, socialId]
+    [socialType, socialId],
   );
   return convertSnakeToCamel.keysToCamel(rows[0]);
-}
+};
 
 const checkAvailableName = async (client, nickname) => {
   const { rows } = await client.query(
@@ -18,10 +18,10 @@ const checkAvailableName = async (client, nickname) => {
     SELECT id FROM public.user
     WHERE nickname = $1
     `,
-    [nickname]
+    [nickname],
   );
   return convertSnakeToCamel.keysToCamel(rows[0]);
-}
+};
 
 const createNewUser = async (client, socialType, socialId, nickname, personalityId) => {
   const now = dayjs().add(9, 'hour');
@@ -38,7 +38,7 @@ const createNewUser = async (client, socialType, socialId, nickname, personality
     [socialType, socialId, nickname, personalityId, dateFormat],
   );
   return convertSnakeToCamel.keysToCamel(rows[0]);
-}
+};
 
 const getAllUser = async (client) => {
   const { rows } = await client.query(

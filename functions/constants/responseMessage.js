@@ -1,4 +1,7 @@
 module.exports = {
+  // 공통
+  NULL_VALUE: '필요한 값이 없습니다.',
+
   // 캐릭터 조회
   GET_TODAY_SUCCESS: '오늘의 캐릭터 불러오기 완료',
   LACK_OF_CHANCE: '새로고침 잔여 기회가 없습니다',
@@ -18,6 +21,7 @@ module.exports = {
 
   // 기록 조회
   GET_RECENT_SUCCESS: '최근기록 조회 완료',
+  GET_DATE_HISTORY_SUCCESS: '지난기록 조회 완료',
   GET_ALL_SUCCESS: '모든기록 조회 완료',
 
   // JWT 에러 메시지
