@@ -49,9 +49,9 @@ module.exports = async (req, res) => {
         content = content.trim();
 
         if (completeTaskIds.includes(tId)) {
-          done.push({ taskId: tId, content });
+          done.push({ taskId: parseInt(tId), content });
         } else {
-          fail.push({ taskId: tId, content });
+          fail.push({ taskId: parseInt(tId), content });
         }
       }
 
@@ -79,7 +79,7 @@ module.exports = async (req, res) => {
       all,
     };
 
-    return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.GET_RECENT_SUCCESS, data));
+    return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.GET_ALL_SUCCESS, data));
   } catch (error) {
     functions.logger.error(`[ERROR] [${req.method.toUpperCase()}] ${req.originalUrl}`, `[CONTENT] ${error}`);
 
