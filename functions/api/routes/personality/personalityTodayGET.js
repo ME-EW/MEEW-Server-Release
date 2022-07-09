@@ -48,7 +48,7 @@ module.exports = async (req, res) => {
       const task = await personalityDB.getTaskByTaskId(client, taskId);
 
       todo.push({
-        taskId,
+        taskId: parseInt(taskId),
         content: task.content.trim(),
         complete,
       });
