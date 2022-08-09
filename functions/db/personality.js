@@ -151,8 +151,9 @@ const getAllHistoryById = async (client, userId, limit, offset) => {
     `
       SELECT * FROM public.history
       WHERE user_id = $1
+      AND created_at <> to_char(now() + '9 hours', 'YYYY-MM-DD')::date
       ORDER BY created_at DESC
-      LIMIT = $2 OFFSET = $3
+      LIMIT $2 OFFSET $3
     `,
     [userId, limit, offset],
   );
