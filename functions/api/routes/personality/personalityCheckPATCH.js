@@ -67,9 +67,9 @@ module.exports = async (req, res) => {
     }
 
     const data = {
-      nickname: user.nickname,
+      nickname: user.nickname.trim(),
       enum: personality.id,
-      name: personality.name,
+      name: personality.name.trim(),
       level: completeTaskIds.length,
       imageUrl,
       chance: user.chance,
