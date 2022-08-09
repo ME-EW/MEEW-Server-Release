@@ -23,6 +23,7 @@ module.exports = {
   GET_RECENT_SUCCESS: '최근기록 조회 완료',
   GET_DATE_HISTORY_SUCCESS: '지난기록 조회 완료',
   GET_ALL_SUCCESS: '모든기록 조회 완료',
+  INVALID_PAGE: '잘못된 page 값',
 
   // JWT 에러 메시지
   NOT_FOUND_AUTHORIZATION_HEADER: 'Authorization 헤더가 존재하지 않습니다.',
