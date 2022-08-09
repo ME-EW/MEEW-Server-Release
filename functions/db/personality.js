@@ -146,14 +146,16 @@ const getPastHistoryById = async (client, userId) => {
   return convertSnakeToCamel.keysToCamel(rows);
 };
 
-const getAllHistoryById = async (client, userId) => {
+const getAllHistoryById = async (client, userId, limit, offset) => {
   const { rows } = await client.query(
     `
       SELECT * FROM public.history
       WHERE user_id = $1
+      AND created_at <> to_char(now() + '9 hours', 'YYYY-MM-DD')::date
       ORDER BY created_at DESC
+      LIMIT $2 OFFSET $3
     `,
-    [userId],
+    [userId, limit, offset],
   );
   return convertSnakeToCamel.keysToCamel(rows);
 };

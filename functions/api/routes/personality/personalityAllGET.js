@@ -7,7 +7,7 @@ const { userDB, personalityDB } = require('../../../db');
 
 /**
  *  @전체기록_불러오기
- *  @route GET /personality/all
+ *  @route GET /personality/all?page=
  *  @error
  */
 
@@ -15,6 +15,15 @@ module.exports = async (req, res) => {
   // @FIX_ME
   // const user = req.user;
   // const userId = user.userId;
+
+  const { page } = req.query;
+
+  if (page < 1) {
+    return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.INVALID_PAGE));
+  }
+
+  const limit = 10;
+  const offset = limit * (page - 1);
 
   let client;
 
@@ -26,34 +35,15 @@ module.exports = async (req, res) => {
 
     let all = [];
 
-    const pastHistory = await personalityDB.getAllHistoryById(client, userId);
-    if (!pastHistory) {
+    const allHistory = await personalityDB.getAllHistoryById(client, userId, limit, offset);
+    if (!allHistory) {
       return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.GET_ALL_SUCCESS, { all: [] }));
     }
 
-    // 오늘 기록은 제외하고 push
-    for (let i = 1; i < pastHistory.length; i++) {
-      const history = pastHistory[i];
+    for (let i = 0; i < allHistory.length; i++) {
+      const history = allHistory[i];
       const allTaskIds = history.allTask.split(',');
-      let completeTaskIds = [];
-      if (history.completeTask) {
-        completeTaskIds = history.completeTask.split(',');
-      }
-
-      let done = [];
-      let fail = [];
-
-      for (let i = 0; i < allTaskIds.length; i++) {
-        const tId = allTaskIds[i];
-        let { content } = await personalityDB.getTaskByTaskId(client, tId);
-        content = content.trim();
-
-        if (completeTaskIds.includes(tId)) {
-          done.push({ taskId: parseInt(tId), content });
-        } else {
-          fail.push({ taskId: parseInt(tId), content });
-        }
-      }
+      let completeTaskIds = history.completeTask ? history.completeTask.split(',') : [];
 
       const level = completeTaskIds.length;
       const personality = await personalityDB.getPersonalityById(client, history.personalityId);
@@ -68,8 +58,8 @@ module.exports = async (req, res) => {
         name: personality.name.trim(),
         imgUrl,
         percent: level * 25,
-        done,
-        fail,
+        done: completeTaskIds.length,
+        fail: allTaskIds.length,
       };
 
       all.push(historyObj);
