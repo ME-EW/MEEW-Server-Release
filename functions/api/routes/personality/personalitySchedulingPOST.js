@@ -11,10 +11,6 @@ const { userDB, personalityDB } = require('../../../db');
  */
 
 module.exports = async (req, res) => {
-  // @FIX_ME
-  // const user = req.user;
-  // const userId = user.userId;
-
   let client;
 
   try {
