@@ -58,9 +58,9 @@ module.exports = async (req, res) => {
     const imageUrl = personalityImage.url;
 
     const data = {
-      nickname: user.nickname,
+      nickname: user.nickname.trim(),
       enum: personality.id,
-      name: personality.name,
+      name: personality.name.trim(),
       level: completeTaskIds.length,
       imageUrl,
       chance: user.chance,
