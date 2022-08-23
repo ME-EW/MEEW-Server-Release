@@ -5,6 +5,7 @@ router.get('', require('./personalityGET'));
 router.get('/today', require('./personalityTodayGET'));
 router.get('/new', require('./personalityNewGET'));
 router.get('/me', require('./personalityMeGET'));
+router.patch('/me', require('./personalityMePATCH'));
 router.get('/date', require('./personalityDateGET'));
 router.get('/recent', require('./personalityRecentGET'));
 router.get('/all', require('./personalityAllGET'));
