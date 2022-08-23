@@ -7,7 +7,7 @@ const { personalityDB } = require('../../../db');
 
 /**
  *  @캐릭터목록_불러오기
- *  @route GET /personalit
+ *  @route GET /personality
  *  @error
  */
 
