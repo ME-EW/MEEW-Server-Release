@@ -38,4 +38,5 @@ module.exports = {
   NOT_FOUND_USER: '존재하지 않는 유저입니다.',
   ALREADY_EXIST_NICKNAME: '존재하는 닉네임입니다.',
   VALID_NICKNAME: '사용 가능한 닉네임입니다.',
+  SET_PERSONALITY_SUCCESS: '캐릭터 설정 완료',
 };
