@@ -172,6 +172,16 @@ const getHistoryByDate = async (client, userId, date) => {
   return convertSnakeToCamel.keysToCamel(rows[0]);
 };
 
+const getPersonalities = async (client) => {
+  const { rows } = await client.query(
+    `
+      SELECT * FROM public.personality
+      ORDER BY id
+    `,
+  );
+  return convertSnakeToCamel.keysToCamel(rows);
+};
+
 module.exports = {
   getRecentHistoryById,
   getTaskByTaskId,
@@ -186,4 +196,5 @@ module.exports = {
   getPastHistoryById,
   getAllHistoryById,
   getHistoryByDate,
+  getPersonalities,
 };
