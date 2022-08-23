@@ -39,4 +39,5 @@ module.exports = {
   ALREADY_EXIST_NICKNAME: '존재하는 닉네임입니다.',
   VALID_NICKNAME: '사용 가능한 닉네임입니다.',
   SET_PERSONALITY_SUCCESS: '캐릭터 설정 완료',
+  INVALID_PERSONALITY_ID: '올바르지 않은 personalityId입니다.',
 };
