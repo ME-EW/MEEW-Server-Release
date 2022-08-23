@@ -88,6 +88,20 @@ const refillChanceById = async (client, userId) => {
   return convertSnakeToCamel.keysToCamel(rows[0]);
 };
 
+const setPersonality = async (client, userId, personalityId) => {
+  const now = dayjs().add(9, 'hour');
+  const { rows } = await client.query(
+    `
+      UPDATE public.user
+      SET personality = $2, updated_at = $3
+      WHERE id = $1
+      RETURNING *
+    `,
+    [userId, personalityId, now],
+  );
+  return convertSnakeToCamel.keysToCamel(rows[0]);
+};
+
 module.exports = {
   getUserBySocialTypeAndSocialId,
   checkAvailableName,
@@ -96,4 +110,5 @@ module.exports = {
   getUserByUserId,
   updateChanceByUserId,
   refillChanceById,
+  setPersonality,
 };
