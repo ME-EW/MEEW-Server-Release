@@ -17,12 +17,17 @@ module.exports = async (req, res) => {
   try {
     client = await db.connect(req);
 
-    let personalities = await personalityDB.getPersonalities(client);
+    let personalityList = await personalityDB.getPersonalities(client);
+    let personalities = [];
 
-    personalities.forEach((p) => {
+    for (let i = 0; i < personalityList.length; i++) {
+      let p = personalityList[i];
       p.name = p.name.trim();
       p.description = p.description.trim();
-    });
+      const imgList = await personalityDB.getImageById(client, p.id);
+      p['imgUrl'] = imgList.map((i) => i.url);
+      personalities.push(p);
+    }
 
     const data = {
       personalities,
