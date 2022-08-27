@@ -75,6 +75,18 @@ const updateTODO = async (client, userId, strCompleteTasks) => {
   return convertSnakeToCamel.keysToCamel(rows[0]);
 };
 
+const getImageById = async (client, personalityId) => {
+  const { rows } = await client.query(
+    `
+      SELECT * FROM public.personality_image
+      WHERE personality_id = $1 AND level > 0
+      ORDER BY level
+    `,
+    [personalityId],
+  );
+  return convertSnakeToCamel.keysToCamel(rows);
+};
+
 const getImageByLevelAndId = async (client, level, personalityId) => {
   const { rows } = await client.query(
     `
@@ -189,6 +201,7 @@ module.exports = {
   getTasksByPersonalityId,
   updateRecentHistory,
   updateTODO,
+  getImageById,
   getImageByLevelAndId,
   finishHistoryByHistoryId,
   createNewHistoryByUserId,
